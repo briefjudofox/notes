@@ -8,9 +8,8 @@ import fiona
 import geojson
 import shapely.wkt
 
-# Read Shape file
+# Read file
 geoms = gpd.read_file('us_hoods.geojson')
-#geoms.loc[zips['GEOID10'] == '94710', 'geometry']
 
 # Add geojson formatted geometry (in addition to WKT)
 geo_json_geom = []
