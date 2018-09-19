@@ -27,3 +27,17 @@ geoms.rename(index=str, columns={"geometry": "geometry_wkt"}, inplace=True)
 # Export as CSV for Hive import, etc
 geoms.to_csv('features.csv',index=False, header=False, sep='|', quoting=3)
 ```
+
+# Create your Hive table (after you've pushed your pipe delimited file to s3)
+
+```
+create external table your_schema.features (
+  id BIGINT,
+  ...
+  geometry_wkt string,
+  geometry_geojson string
+  )  ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY '|'
+  stored as TEXTFILE
+  location 's3://.../your_schema/features/your_featurs.csv';
+  ```
